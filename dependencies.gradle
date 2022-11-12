@@ -1,5 +1,5 @@
 // Add your dependencies here
 
 dependencies {
-
+    compile "com.mod-buildcraft:buildcraft:6.1.5:api"
 }

@@ -64,7 +64,11 @@ public class FluidBufferTile extends TileEntity implements IFluidHandler {
             player.addChatMessage(new ChatComponentText("Empty"));
         }
 
-        System.out.println("target: " + (_target != null));
+//        System.out.println("target: " + (_target != null));
+    }
+
+    public void updateNeighbors() {
+        _neighborInitialized = false;
     }
 
     public void onNeighborChange(int tileX, int tileY, int tileZ) {

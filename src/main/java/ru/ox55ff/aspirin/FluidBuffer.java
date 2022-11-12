@@ -1,5 +1,6 @@
 package ru.ox55ff.aspirin;
 
+import buildcraft.api.tools.IToolWrench;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockContainer;
@@ -67,20 +68,9 @@ public class FluidBuffer extends BlockContainer {
         world.setBlockMetadataWithNotify(x, y, z, direction, 2);
     }
 
-    /**
-     * Called when a tile entity on a side of this block changes is created or is destroyed.
-     * @param world The world
-     * @param x The x position of this block instance
-     * @param y The y position of this block instance
-     * @param z The z position of this block instance
-     * @param tileX The x position of the tile that changed
-     * @param tileY The y position of the tile that changed
-     * @param tileZ The z position of the tile that changed
-     */
     @Override
     public void onNeighborChange(IBlockAccess world, int x, int y, int z, int tileX, int tileY, int tileZ)
     {
-        System.out.printf("onNeighborChange: %d, %d, %d%n", x, y, z);
         TileEntity tile = world.getTileEntity(x, y, z);
         if (tile instanceof FluidBufferTile) {
             FluidBufferTile fbTile = (FluidBufferTile) tile;
@@ -94,11 +84,21 @@ public class FluidBuffer extends BlockContainer {
             TileEntity tile = world.getTileEntity(x, y, z);
             if (tile instanceof FluidBufferTile) {
                 FluidBufferTile fbTile = (FluidBufferTile) tile;
+                ItemStack item = player.getHeldItem();
+
+                if (item != null && item.getItem() instanceof IToolWrench) {
+                    ForgeDirection clickDir = ForgeDirection.getOrientation(side);
+                    world.setBlockMetadataWithNotify(x, y, z, clickDir.getOpposite().ordinal(), 3);
+                    fbTile.updateNeighbors();
+                    return true;
+                }
+
                 fbTile.onActivated(player);
+                return true;
             }
         }
 
-        return true;
+        return false;
     }
 
     @Override
