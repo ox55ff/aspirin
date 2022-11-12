@@ -8,7 +8,6 @@ import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
 
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 
 public class FluidBufferTile extends TileEntity implements IFluidHandler {
