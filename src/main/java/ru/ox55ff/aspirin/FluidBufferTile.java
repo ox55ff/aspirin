@@ -12,8 +12,8 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 
 public class FluidBufferTile extends TileEntity implements IFluidHandler {
-    private static final int TankCapacity = 16_000;
-    private static final int MinOut = 2_000;
+    private static final int TankCapacity = 4_000;
+    private static final int MinOut = 1_000;
     private static final String TankCountKey = "tankCount";
     private static final String TankTagPrefixKey = "tank_";
 
@@ -146,7 +146,7 @@ public class FluidBufferTile extends TileEntity implements IFluidHandler {
             _neighborInitialized = true;
         }
 
-        if (!worldObj.isRemote && worldObj.getTotalWorldTime() % 20 == 0 && _target != null) {
+        if (!worldObj.isRemote && worldObj.getTotalWorldTime() % 5 == 0 && _target != null) {
             ForgeDirection side = getSide();
             for (FluidTank tank : _tanks) {
                 if (tank.getFluidAmount() >= MinOut) {
@@ -201,7 +201,6 @@ public class FluidBufferTile extends TileEntity implements IFluidHandler {
         }
     }
 
-    @Nullable
     private void readExtendedData(NBTTagCompound nbt) {
         if (!nbt.hasKey(TankCountKey, Constants.NBT.TAG_INT)) {
             return;
