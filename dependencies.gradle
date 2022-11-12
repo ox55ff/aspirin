@@ -1,5 +1,6 @@
 // Add your dependencies here
 
 dependencies {
-    compile "com.mod-buildcraft:buildcraft:6.1.5:api"
+    implementation "com.mod-buildcraft:buildcraft:6.1.5:api"
+    implementation "com.github.ox55ff:GT5Unofficial:rev2"
 }
