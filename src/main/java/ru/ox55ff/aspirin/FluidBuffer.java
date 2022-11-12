@@ -32,6 +32,7 @@ public class FluidBuffer extends BlockContainer {
         setBlockName("fluidBuffer");
         setBlockTextureName(Tags.MODID + ":fluidBuffer");
         setCreativeTab(CreativeTabs.tabMisc);
+        setHardness(15F);
     }
 
     @Override
@@ -73,8 +74,7 @@ public class FluidBuffer extends BlockContainer {
     }
 
     @Override
-    public void onNeighborChange(IBlockAccess world, int x, int y, int z, int tileX, int tileY, int tileZ)
-    {
+    public void onNeighborChange(IBlockAccess world, int x, int y, int z, int tileX, int tileY, int tileZ) {
         TileEntity tile = world.getTileEntity(x, y, z);
         if (tile instanceof FluidBufferTile) {
             FluidBufferTile fbTile = (FluidBufferTile) tile;
