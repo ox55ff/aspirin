@@ -117,7 +117,7 @@ public class FluidBuffer extends BlockContainer {
             }
         }
 
-        return false;
+        return true;
     }
 
     @Override
